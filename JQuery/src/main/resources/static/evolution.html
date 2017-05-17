@@ -3,19 +3,44 @@
 <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		alert('hello');
-		$('thead').after('<tbody><tr><td>Chen</td><td>M</td></tr></tbody>');
+		$('body').append('<table></table>');
+		function addColumns(columnNames) {
+			var td = $('table').append('<thead><tr></tr></thead>');
+			for (var j = 0; j < columnNames.length; j++) {
+				td = td.append('<td>' + columnNames[j] + '</td>');
+			}
+		}
+		function addRow(columnValues) {
+			var td = $('table').append('<tbody><tr></tr></tbody>');
+			for (var j = 0; j < columnValues.length; j++) {
+				td = td.append('<td>' + columnValues[j] + '</td>');
+			}
+		}
+		function test() {
+			var columnNames = new Array();
+			columnNames.push('name');
+			columnNames.push('gender');
+			columnNames.push('hobby');
+			columnNames.push('birthday');
+			columnNames.push('age');
+			addColumns(columnNames);
+			for (var i = 0; i < 10; i++) {
+				var columnValues = new Array();
+				columnValues.push('Chen');
+				columnValues.push('M');
+				columnValues.push('Math');
+				columnValues.push('0813');
+				columnValues.push(27 + i);
+				addRow(columnValues);
+			}
+		}
+		$('button').click(function() {
+			test();
+		});
 	});
 </script>
 </head>
 <body>
-	<table id="anyTable">
-		<thead>
-			<tr>
-				<td>name</td>
-				<td>gender</td>
-			</tr>
-		</thead>
-	</table>
+	<button>Test</button>
 </body>
 </html>
