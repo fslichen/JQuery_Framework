@@ -15,26 +15,11 @@
 			}
 			var returnData = post('/post', data, 'anyTable');
 		}
-		function testAddRow() {
-			addRow('anyTable', ['id', 'name', 'gender', 'age']);
-			for (var i = 0; i < 10; i++) {
-				addRow('anyTable', [0, 'Chen', 'M', 27 + i]);
-			}
-		}
-		function testAddDate(divId) {
-			addDate('anyDate');
-		}
-		$('button').click(function() {
-			testPost();
-			testAddDate();
-		});
+		testPost();
 	});
 </script>
 </head>
 <body>
-	<button>Test</button>
-	<div id="anyTable">
-		
-	</div>
+	<div id="anyTable"></div>
 </body>
 </html>
