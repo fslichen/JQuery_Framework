@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="jquery-framework.css">
-<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="jquery-framework.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -15,7 +15,9 @@
 			}
 			var returnData = post('/post', data, 'anyTable');
 		}
-		testPost();
+		$('#anyTable_pagination_search').click(function() {
+			testPost();
+		});
 	});
 </script>
 </head>

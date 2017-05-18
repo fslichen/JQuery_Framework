@@ -35,15 +35,15 @@ function initializeTable(tableId) {
 	div.append('<div id="' + tableId + '_end_time"/>');
 	addDate(tableId + '_end_time');
 	// Table
-	div.append('<table></table>');
+	div.append('<table><tbody></tbody></table>');
 	// Pagination
 	div.append('<div id="' + tableId + '_pagination"></div>');
 	addPagination(tableId + '_pagination');
 }
 function addRow(tableId, columnValues) {
-	var table = $('#' + tableId + ">table");
+	var tbody = $('#' + tableId + ">table>tbody");
 	var tr = $('<tr>');
-	table.append(tr);
+	tbody.append(tr);
 	for (var i = 0; i < columnValues.length; i++) {
 		tr.append('<td>' + columnValues[i] + '</td>');
 	}
@@ -55,6 +55,12 @@ function post(stringUrl, requestData, tableId) {
 		url : stringUrl,
 		data : JSON.stringify(requestData),
 		success : function(responseDataList) {
+			// Delete Previous Data
+			if ($('#' + tableId + '>table>tbody').children('tr').length > 0) {
+				alert('Previous data exists.');
+			} else {
+				alert('Previous data does not exist.');
+			}
 			// Define Columns
 			var responseData = responseDataList[0];
 			var columnNames = new Array();
@@ -71,7 +77,7 @@ function post(stringUrl, requestData, tableId) {
 			}
 			addRow(tableId, buttons);
 			// Add Data
-			var indexes = pagination(1, responseDataList.length);
+			var indexes = pagination($('#' + tableId + '_pagination_current').val(), responseDataList.length);
 			for (var i = indexes[0]; i < indexes[1]; i++) {
 				responseData = responseDataList[i];
 				var columnValues = new Array();
@@ -85,5 +91,5 @@ function post(stringUrl, requestData, tableId) {
 		error : function() {
 			alert('Error');
 		}
-	});		
+	});
 }
