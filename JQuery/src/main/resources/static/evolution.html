@@ -17,7 +17,7 @@
 			columnNames.push('hobby');
 			columnNames.push('birthday');
 			columnNames.push('age');
-			addColumns(columnNames);
+			addRow('anyTable', columnNames);
 			for (var i = 0; i < 10; i++) {
 				var columnValues = new Array();
 				columnValues.push('Chen');
@@ -25,7 +25,7 @@
 				columnValues.push('Math');
 				columnValues.push('0813');
 				columnValues.push(27 + i);
-				addRow(columnValues);
+				addRow('anyTable', columnValues);
 			}
 		}
 		$('button').click(function() {
