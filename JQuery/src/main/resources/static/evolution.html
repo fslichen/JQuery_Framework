@@ -10,14 +10,14 @@
 			}
 			post('/post', data);
 		}
-		function test() {
+		function testAddRow() {
 			addRow('anyTable', ['name', 'gender', 'hobby', 'birthday', 'age']);
 			for (var i = 0; i < 10; i++) {
 				addRow('anyTable', ['Chen', 'M', 'Math', '0813', 27 + i]);
 			}
 		}
 		$('button').click(function() {
-			test();
+			testAddRow();
 			testPost();
 			alert('Hello');
 		});
