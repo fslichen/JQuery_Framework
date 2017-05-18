@@ -20,11 +20,18 @@ function post(stringUrl, requestData, tableId) {
 				columnNames.push(columnName);
 			}
 			addRow(tableId, columnNames);
+			// Add Buttons
+			var buttons = new Array();
+			for (columnName in responseData) {
+				var buttonHtml = '<input type="button" value="ASC" id="asc_' + columnName +'"/><input type="button" value="DESC" id="desc_' + columnName + '"/>';
+				buttons.push(buttonHtml);
+			}
+			addRow(tableId, buttons);
 			// Add Data
-			for (i in responseDataList) {
+			for (var i = 0; i < responseDataList.length; i++) {
 				responseData = responseDataList[i];
 				var columnValues = new Array();
-				for (j in columnNames) {
+				for (var j = 0; j < columnNames.length; j++) {
 					columnValues.push(responseData[columnNames[j]]);
 				}
 				addRow(tableId, columnValues);
