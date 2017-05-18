@@ -1,20 +1,14 @@
 <html>
 <head>
 <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="jquery-framework.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('body').append('<table></table>');
-		function addColumns(columnNames) {
-			var td = $('table').append('<thead><tr></tr></thead>');
-			for (var j = 0; j < columnNames.length; j++) {
-				td = td.append('<td>' + columnNames[j] + '</td>');
+		function testPost() {
+			var data = {
+				name : 'Chen'
 			}
-		}
-		function addRow(columnValues) {
-			var td = $('table').append('<tbody><tr></tr></tbody>');
-			for (var j = 0; j < columnValues.length; j++) {
-				td = td.append('<td>' + columnValues[j] + '</td>');
-			}
+			post('/post', data);
 		}
 		function test() {
 			var columnNames = new Array();
@@ -36,11 +30,14 @@
 		}
 		$('button').click(function() {
 			test();
+			testPost();
+			alert('Hello');
 		});
 	});
 </script>
 </head>
 <body>
 	<button>Test</button>
+	<table id="anyTable"></table>
 </body>
 </html>
