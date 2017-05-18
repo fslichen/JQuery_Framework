@@ -1,3 +1,7 @@
+function pagination(pageIndex, rowCount) {
+	var pageSize = 20;
+	return [(pageIndex - 1) * pageSize, Math.min(pageIndex * pageSize, rowCount)];
+}
 function addDate(divId) {
 	var div = $('#' + divId);
 	var monthOptions;
@@ -18,10 +22,10 @@ function addDate(divId) {
 }
 function addPagination(divId) {
 	var div = $('#' + divId);
-	div.append('<input type="button" value="Previous"/>');
-	div.append('<input type="button" value="Next"/>');
-	div.append('<input type="text" value="1"/>');
-	div.append('<input type="button" value="Go"/>');
+	div.append('<input type="button" value="Previous" id="' + divId +'_previous"/>');
+	div.append('<input type="button" value="Next" id="' + divId +'_next"/>');
+	div.append('<input type="text" value="1" id="' + divId +'_current"/>');
+	div.append('<input type="button" value="Search" id="' + divId +'_search"/>');
 }
 function initializeTable(tableId) {
 	var div = $('#' + tableId);
@@ -67,7 +71,8 @@ function post(stringUrl, requestData, tableId) {
 			}
 			addRow(tableId, buttons);
 			// Add Data
-			for (var i = 0; i < responseDataList.length; i++) {
+			var indexes = pagination(1, responseDataList.length);
+			for (var i = indexes[0]; i < indexes[1]; i++) {
 				responseData = responseDataList[i];
 				var columnValues = new Array();
 				columnValues.push('<input type="checkbox" id="row_' + i +'"/>');
