@@ -6,6 +6,17 @@ public class AnyDto {
 	private String gender;
 	private int age;
 	
+	public AnyDto() {
+
+	}
+
+	public AnyDto(int id, String name, String gender, int age) {
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+	}
+
 	public int getId() {
 		return id;
 	}
