@@ -6,18 +6,32 @@ function addRow(tableId, columnValues) {
 		tr.append('<td>' + columnValues[j] + '</td>');
 	}
 }
-function post(stringUrl, objectData) {
+function post(stringUrl, requestData, tableId) {
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
 		url : stringUrl,
-		data : JSON.stringify(objectData),
-		success : function(returnData) {
-			alert('Success');
-			alert(returnData.name);
+		data : JSON.stringify(requestData),
+		success : function(responseDataList) {
+			// Define Columns
+			var responseData = responseDataList[0];
+			var columnNames = new Array();
+			for (columnName in responseData) {
+				columnNames.push(columnName);
+			}
+			addRow(tableId, columnNames);
+			// Add Data
+			for (i in responseDataList) {
+				responseData = responseDataList[i];
+				var columnValues = new Array();
+				for (j in columnNames) {
+					columnValues.push(responseData[columnNames[j]]);
+				}
+				addRow(tableId, columnValues);
+			}
 		}, 
 		error : function() {
 			alert('Error');
 		}
-	});			
+	});		
 }

@@ -6,20 +6,22 @@
 	$(document).ready(function() {
 		function testPost() {
 			var data = {
-				name : 'Chen'
+				id : 0,
+				name : 'Chen',
+				gender : 'M',
+				age : 27
 			}
-			post('/post', data);
+			var returnData = post('/post', data, 'anyTable');
 		}
 		function testAddRow() {
-			addRow('anyTable', ['name', 'gender', 'hobby', 'birthday', 'age']);
+			addRow('anyTable', ['id', 'name', 'gender', 'age']);
 			for (var i = 0; i < 10; i++) {
-				addRow('anyTable', ['Chen', 'M', 'Math', '0813', 27 + i]);
+				addRow('anyTable', [0, 'Chen', 'M', 27 + i]);
 			}
 		}
 		$('button').click(function() {
-			testAddRow();
+			// testAddRow();
 			testPost();
-			alert('Hello');
 		});
 	});
 </script>
