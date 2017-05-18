@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+div {
+    display: inline-block;
+    padding: 2px;
+    margin: 2px;
+}
