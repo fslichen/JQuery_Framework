@@ -11,21 +11,9 @@
 			post('/post', data);
 		}
 		function test() {
-			var columnNames = new Array();
-			columnNames.push('name');
-			columnNames.push('gender');
-			columnNames.push('hobby');
-			columnNames.push('birthday');
-			columnNames.push('age');
-			addRow('anyTable', columnNames);
+			addRow('anyTable', ['name', 'gender', 'hobby', 'birthday', 'age']);
 			for (var i = 0; i < 10; i++) {
-				var columnValues = new Array();
-				columnValues.push('Chen');
-				columnValues.push('M');
-				columnValues.push('Math');
-				columnValues.push('0813');
-				columnValues.push(27 + i);
-				addRow('anyTable', columnValues);
+				addRow('anyTable', ['Chen', 'M', 'Math', '0813', 27 + i]);
 			}
 		}
 		$('button').click(function() {
