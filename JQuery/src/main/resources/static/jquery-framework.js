@@ -27,6 +27,12 @@ function addPagination(divId) {
 	div.append('<input type="text" value="1" id="' + divId +'_current"/>');
 	div.append('<input type="button" value="Search" id="' + divId +'_search"/>');
 }
+var data = {
+	id : 0,
+	name : 'Chen',
+	gender : 'M',
+	age : 27
+}
 function initializeTable(tableId) {
 	var div = $('#' + tableId);
 	// Start Time and End Time
@@ -39,6 +45,20 @@ function initializeTable(tableId) {
 	// Pagination
 	div.append('<div id="' + tableId + '_pagination"></div>');
 	addPagination(tableId + '_pagination');
+	$('#anyTable_pagination_search').click(function() {
+		post('/post', data, 'anyTable');
+	});
+	$('#anyTable_pagination_previous').click(function() {
+		var currentPageIndex = $('#anyTable_pagination_current').val();
+		if (currentPageIndex > 1) {
+			$('#anyTable_pagination_current').val(currentPageIndex - 1);
+			post('/post', data, 'anyTable');
+		}
+	});
+	$('#anyTable_pagination_next').click(function() {
+		$('#anyTable_pagination_current').val(parseInt($('#anyTable_pagination_current').val()) + 1);
+		post('/post', data, 'anyTable');
+	});
 }
 function addRow(tableId, columnValues) {
 	var tbody = $('#' + tableId + ">table>tbody");
@@ -56,10 +76,9 @@ function post(stringUrl, requestData, tableId) {
 		data : JSON.stringify(requestData),
 		success : function(responseDataList) {
 			// Delete Previous Data
-			if ($('#' + tableId + '>table>tbody').children('tr').length > 0) {
-				alert('Previous data exists.');
-			} else {
-				alert('Previous data does not exist.');
+			var previousTrs = $('#' + tableId + '>table>tbody').children('tr');
+			if (previousTrs.length > 0) {
+				previousTrs.remove();
 			}
 			// Define Columns
 			var responseData = responseDataList[0];
