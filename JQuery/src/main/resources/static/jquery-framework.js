@@ -16,8 +16,28 @@ function addDate(divId) {
 	div.append('Day<select>' + dayOptions + '</select>');
 	div.append('Year<select>' + yearOptions + '</select>');
 }
+function addPagination(divId) {
+	var div = $('#' + divId);
+	div.append('<input type="button" value="Previous"/>');
+	div.append('<input type="button" value="Next"/>');
+	div.append('<input type="text" value="1"/>');
+	div.append('<input type="button" value="Go"/>');
+}
+function initializeTable(tableId) {
+	var div = $('#' + tableId);
+	// Start Time and End Time
+	div.append('<div id="' + tableId + '_start_time" style="float:left"/>');
+	addDate(tableId + '_start_time');
+	div.append('<div id="' + tableId + '_end_time"/>');
+	addDate(tableId + '_end_time');
+	// Table
+	div.append('<table></table>');
+	// Pagination
+	div.append('<div id="' + tableId + '_pagination"></div>');
+	addPagination(tableId + '_pagination');
+}
 function addRow(tableId, columnValues) {
-	var table = $('#' + tableId);
+	var table = $('#' + tableId + ">table");
 	var tr = $('<tr>');
 	table.append(tr);
 	for (var i = 0; i < columnValues.length; i++) {

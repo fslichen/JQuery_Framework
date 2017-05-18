@@ -4,6 +4,7 @@
 <script type="text/javascript" src="jquery-framework.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		initializeTable('anyTable');
 		function testPost() {
 			var data = {
 				id : 0,
@@ -20,7 +21,7 @@
 			}
 		}
 		function testAddDate(divId) {
-			addDate('anyDiv');
+			addDate('anyDate');
 		}
 		$('button').click(function() {
 			testPost();
@@ -31,7 +32,8 @@
 </head>
 <body>
 	<button>Test</button>
-	<table id="anyTable"></table>
-	<div id="anyDiv"></div>
+	<div id="anyTable">
+		
+	</div>
 </body>
 </html>
