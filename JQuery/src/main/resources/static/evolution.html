@@ -19,9 +19,12 @@
 				addRow('anyTable', [0, 'Chen', 'M', 27 + i]);
 			}
 		}
+		function testAddDate(divId) {
+			addDate('anyDiv');
+		}
 		$('button').click(function() {
-			// testAddRow();
 			testPost();
+			testAddDate();
 		});
 	});
 </script>
@@ -29,5 +32,6 @@
 <body>
 	<button>Test</button>
 	<table id="anyTable"></table>
+	<div id="anyDiv"></div>
 </body>
 </html>

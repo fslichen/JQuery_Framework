@@ -1,3 +1,21 @@
+function addDate(divId) {
+	var div = $('#' + divId);
+	var monthOptions;
+	for (var i = 1; i <= 12; i++) {
+		monthOptions += '<option>' + i + '</option>';
+	}
+	var dayOptions;
+	for (var i = 1; i <= 31; i++) {
+		dayOptions += '<option>' + i + '</option>';
+	}
+	var yearOptions;
+	for (var i = new Date().getFullYear(); i >= 1900; i--) {
+		yearOptions += '<option>' + i + '</option>';
+	}
+	div.append('Month<select>' + monthOptions + '</select>');
+	div.append('Day<select>' + dayOptions + '</select>');
+	div.append('Year<select>' + yearOptions + '</select>');
+}
 function addRow(tableId, columnValues) {
 	var table = $('#' + tableId);
 	var tr = $('<tr>');
